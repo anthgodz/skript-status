@@ -7,7 +7,7 @@ command /status [<string>]:
 	usage: &cUsage: /status <status> (leave empty to remove status)
 	description: Sets your status! (leave empty to remove status)
 	trigger:
-		if arg-1 contains "Admin" or "Owner" or "Mod" or "Moderator" or "Creator":
+		if arg-1 contains "Admin" or "Owner" or "Mod" or "Moderator" or "Creator" or "VIP" or "MVP" or "Donator":
 			execute console command "tempban %sender% 1d Attempted impersonation through status"
 		else if arg-1 contains "fuck" or "shit" or "bitch" or "dick":
 			execute console command "tempban %sender% 1d Attempted profanity in status"
@@ -16,6 +16,8 @@ command /status [<string>]:
 		else if arg-1 is not set:
 			set player's suffix to ""
 			send "[&a&lStatus&r] &aCleared your status!"
+		else if length of arg-1 is greater than 10:
+			send "[&a&lStatus&r] &cYour status is too long!"
 		else:
 			send "[&a&lStatus&r] &aSet your status to ""%arg-1%"""
 			set player's suffix to " (%arg-1%&r)"
