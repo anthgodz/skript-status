@@ -1,0 +1,21 @@
+#WARNING for this to work, you need a chat plugin such as essentials chat and you NEED the plugin vault, then you need to configure the chat plugin so in chat it includes the player suffix in the message instead of <player> message, if the status is set to something, it should include the suffix in the message, for essentials chat, find line "format: " under EssentialsX chat (it will be in a big # thingy) and change it to "format: <{DISPLAYNAME}> {MESSAGE}" then type "/essentials reload" to reload config
+
+
+command /status [<string>]:
+	permission: status.use
+	permission message: [&a&lStatus&r] &cYou do not have permission to change your status! (&6status.use&r)
+	usage: &cUsage: /status <status> (leave empty to clear)
+	description: Sets your status!
+	trigger:
+		if arg-1 contains "Admin" or "Owner" or "Mod" or "Moderator" or "Creator":
+			execute console command "tempban %sender% 1d Attempted impersonation through status"
+		else if arg-1 contains "fuck" or "shit" or "bitch" or "dick":
+			execute console command "tempban %sender% 1d Attempted profanity in status"
+		else if arg-1 contains "_" or "-" or "`" or "~" or " ":
+			send "&cYou cannot have spaces or characters that possibly refer to a space in your status"
+		else if arg-1 is not set:
+			set player's suffix to ""
+			send "[&a&lStatus&r] &aCleared your status!"
+		else:
+			send "[&a&lStatus&r] &aSet your status to ""%arg-1%"""
+			set player's suffix to " (%arg-1%&r)"
