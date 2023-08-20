@@ -4,8 +4,8 @@
 command /status [<string>]:
 	permission: status.use
 	permission message: [&a&lStatus&r] &cYou do not have permission to change your status! (&6status.use&r)
-	usage: &cUsage: /status <status> (leave empty to clear)
-	description: Sets your status!
+	usage: &cUsage: /status <status> (leave empty to remove status)
+	description: Sets your status! (leave empty to remove status)
 	trigger:
 		if arg-1 contains "Admin" or "Owner" or "Mod" or "Moderator" or "Creator":
 			execute console command "tempban %sender% 1d Attempted impersonation through status"
